@@ -1,0 +1,100 @@
+﻿@model IEnumerable<ProjetoIOB.Models.sp_viewAllContato_Result>
+
+@{
+    ViewBag.Title = "Lista de Contatos";
+}
+
+<h2>Contatos</h2>
+
+<p>
+    @Html.ActionLink("Novo Contato", "Create", null, new { @class = "btn btn-success" })
+    @Html.ActionLink("Backup de Contatos", "Backup", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NOME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TELEFONE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TELEFONE_AUX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATA_NASCIMENTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CEP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RUA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NUMERO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COMPLEMENTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BAIRRO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CIDADE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ESTADO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TELEFONE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TELEFONE_AUX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMAIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATA_NASCIMENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CEP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RUA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NUMERO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COMPLEMENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BAIRRO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CIDADE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ESTADO)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }, new { @class = "btn btn-primary" }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+            @Html.ActionLink("Deletar", "Delete", new { id=item.ID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

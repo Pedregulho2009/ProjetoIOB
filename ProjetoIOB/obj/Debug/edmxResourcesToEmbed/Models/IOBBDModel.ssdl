@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IOBBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'IOBBD.dbo.CONTATO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CONTATO">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="NOME" />
+      <PropertyRef Name="TELEFONE" />
+      <PropertyRef Name="TELEFONE_AUX" />
+      <PropertyRef Name="EMAIL" />
+      <PropertyRef Name="DATA_NASCIMENTO" />
+      <PropertyRef Name="CEP" />
+      <PropertyRef Name="RUA" />
+      <PropertyRef Name="NUMERO" />
+      <PropertyRef Name="BAIRRO" />
+      <PropertyRef Name="CIDADE" />
+      <PropertyRef Name="ESTADO" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOME" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="TELEFONE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TELEFONE_AUX" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DATA_NASCIMENTO" Type="date" Nullable="false" />
+    <Property Name="CEP" Type="int" Nullable="false" />
+    <Property Name="RUA" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NUMERO" Type="int" Nullable="false" />
+    <Property Name="COMPLEMENTO" Type="varchar" MaxLength="200" />
+    <Property Name="BAIRRO" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CIDADE" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ESTADO" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'IOBBD.dbo.EVENTO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="EVENTO">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="NOME" />
+      <PropertyRef Name="DATA" />
+      <PropertyRef Name="DESCRICAO" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOME" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DATA" Type="datetime" Nullable="false" />
+    <Property Name="DESCRICAO" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <Function Name="sp_deleteContato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_deleteEvento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_insertupdate_contato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="nome" Type="varchar" Mode="In" />
+    <Parameter Name="telefone" Type="varchar" Mode="In" />
+    <Parameter Name="telefone_aux" Type="varchar" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="data_nascimento" Type="date" Mode="In" />
+    <Parameter Name="cep" Type="int" Mode="In" />
+    <Parameter Name="rua" Type="varchar" Mode="In" />
+    <Parameter Name="numero" Type="int" Mode="In" />
+    <Parameter Name="complemento" Type="varchar" Mode="In" />
+    <Parameter Name="bairro" Type="varchar" Mode="In" />
+    <Parameter Name="cidade" Type="varchar" Mode="In" />
+    <Parameter Name="estado" Type="varchar" Mode="In" />
+    <Parameter Name="idout" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_insertupdate_evento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="nome" Type="varchar" Mode="In" />
+    <Parameter Name="data" Type="datetime" Mode="In" />
+    <Parameter Name="descricao" Type="varchar" Mode="In" />
+    <Parameter Name="idout" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_viewAllContato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_viewAllEvento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_viewContatoById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_viewEventoById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="IOBBDModelStoreContainer">
+    <EntitySet Name="CONTATO" EntityType="Self.CONTATO" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CONTATO].[ID] AS [ID], 
+    [CONTATO].[NOME] AS [NOME], 
+    [CONTATO].[TELEFONE] AS [TELEFONE], 
+    [CONTATO].[TELEFONE_AUX] AS [TELEFONE_AUX], 
+    [CONTATO].[EMAIL] AS [EMAIL], 
+    [CONTATO].[DATA_NASCIMENTO] AS [DATA_NASCIMENTO], 
+    [CONTATO].[CEP] AS [CEP], 
+    [CONTATO].[RUA] AS [RUA], 
+    [CONTATO].[NUMERO] AS [NUMERO], 
+    [CONTATO].[COMPLEMENTO] AS [COMPLEMENTO], 
+    [CONTATO].[BAIRRO] AS [BAIRRO], 
+    [CONTATO].[CIDADE] AS [CIDADE], 
+    [CONTATO].[ESTADO] AS [ESTADO]
+    FROM [dbo].[CONTATO] AS [CONTATO]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="EVENTO" EntityType="Self.EVENTO" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [EVENTO].[ID] AS [ID], 
+    [EVENTO].[NOME] AS [NOME], 
+    [EVENTO].[DATA] AS [DATA], 
+    [EVENTO].[DESCRICAO] AS [DESCRICAO]
+    FROM [dbo].[EVENTO] AS [EVENTO]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

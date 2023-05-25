@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IOBBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CONTATO">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="NOME" />
+      <PropertyRef Name="TELEFONE" />
+      <PropertyRef Name="TELEFONE_AUX" />
+      <PropertyRef Name="EMAIL" />
+      <PropertyRef Name="DATA_NASCIMENTO" />
+      <PropertyRef Name="CEP" />
+      <PropertyRef Name="RUA" />
+      <PropertyRef Name="NUMERO" />
+      <PropertyRef Name="BAIRRO" />
+      <PropertyRef Name="CIDADE" />
+      <PropertyRef Name="ESTADO" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TELEFONE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TELEFONE_AUX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DATA_NASCIMENTO" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CEP" Type="Int32" Nullable="false" />
+    <Property Name="RUA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NUMERO" Type="Int32" Nullable="false" />
+    <Property Name="COMPLEMENTO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="BAIRRO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CIDADE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EVENTO">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="NOME" />
+      <PropertyRef Name="DATA" />
+      <PropertyRef Name="DESCRICAO" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DATA" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DESCRICAO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="IOBBDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CONTATO" EntityType="Self.CONTATO" />
+    <EntitySet Name="EVENTO" EntityType="Self.EVENTO" />
+    <FunctionImport Name="sp_viewAllContato" ReturnType="Collection(IOBBDModel.sp_viewAllContato_Result)" />
+    <FunctionImport Name="sp_insertupdate_contato">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="nome" Mode="In" Type="String" />
+      <Parameter Name="telefone" Mode="In" Type="String" />
+      <Parameter Name="telefone_aux" Mode="In" Type="String" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="data_nascimento" Mode="In" Type="DateTime" />
+      <Parameter Name="cep" Mode="In" Type="Int32" />
+      <Parameter Name="rua" Mode="In" Type="String" />
+      <Parameter Name="numero" Mode="In" Type="Int32" />
+      <Parameter Name="complemento" Mode="In" Type="String" />
+      <Parameter Name="bairro" Mode="In" Type="String" />
+      <Parameter Name="cidade" Mode="In" Type="String" />
+      <Parameter Name="estado" Mode="In" Type="String" />
+      <Parameter Name="idout" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_viewContatoById" ReturnType="Collection(IOBBDModel.sp_viewContatoById_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_deleteContato">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_deleteEvento">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_insertupdate_evento">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="nome" Mode="In" Type="String" />
+      <Parameter Name="data" Mode="In" Type="DateTime" />
+      <Parameter Name="descricao" Mode="In" Type="String" />
+      <Parameter Name="idout" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_viewAllEvento" ReturnType="Collection(IOBBDModel.sp_viewAllEvento_Result)" />
+    <FunctionImport Name="sp_viewEventoById" ReturnType="Collection(IOBBDModel.sp_viewEventoById_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_viewAllContato_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="NOME" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="TELEFONE" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="TELEFONE_AUX" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="DATA_NASCIMENTO" Nullable="false" />
+    <Property Type="Int32" Name="CEP" Nullable="false" />
+    <Property Type="String" Name="RUA" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="NUMERO" Nullable="false" />
+    <Property Type="String" Name="COMPLEMENTO" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="BAIRRO" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="CIDADE" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ESTADO" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_viewContatoById_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="NOME" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="TELEFONE" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="TELEFONE_AUX" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="DATA_NASCIMENTO" Nullable="false" />
+    <Property Type="Int32" Name="CEP" Nullable="false" />
+    <Property Type="String" Name="RUA" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="NUMERO" Nullable="false" />
+    <Property Type="String" Name="COMPLEMENTO" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="BAIRRO" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="CIDADE" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ESTADO" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_viewAllEvento_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="NOME" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="DATA" Nullable="false" Precision="23" />
+    <Property Type="String" Name="DESCRICAO" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="sp_viewEventoById_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="NOME" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="DATA" Nullable="false" Precision="23" />
+    <Property Type="String" Name="DESCRICAO" Nullable="false" MaxLength="200" />
+  </ComplexType>
+</Schema>

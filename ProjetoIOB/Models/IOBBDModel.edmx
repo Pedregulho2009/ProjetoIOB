@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="IOBBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IOBBD.dbo.CONTATO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CONTATO">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="NOME" />
+            <PropertyRef Name="TELEFONE" />
+            <PropertyRef Name="TELEFONE_AUX" />
+            <PropertyRef Name="EMAIL" />
+            <PropertyRef Name="DATA_NASCIMENTO" />
+            <PropertyRef Name="CEP" />
+            <PropertyRef Name="RUA" />
+            <PropertyRef Name="NUMERO" />
+            <PropertyRef Name="BAIRRO" />
+            <PropertyRef Name="CIDADE" />
+            <PropertyRef Name="ESTADO" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TELEFONE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TELEFONE_AUX" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DATA_NASCIMENTO" Type="date" Nullable="false" />
+          <Property Name="CEP" Type="int" Nullable="false" />
+          <Property Name="RUA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NUMERO" Type="int" Nullable="false" />
+          <Property Name="COMPLEMENTO" Type="varchar" MaxLength="200" />
+          <Property Name="BAIRRO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CIDADE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IOBBD.dbo.EVENTO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EVENTO">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="NOME" />
+            <PropertyRef Name="DATA" />
+            <PropertyRef Name="DESCRICAO" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DATA" Type="datetime" Nullable="false" />
+          <Property Name="DESCRICAO" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Function Name="sp_deleteContato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_deleteEvento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_insertupdate_contato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nome" Type="varchar" Mode="In" />
+          <Parameter Name="telefone" Type="varchar" Mode="In" />
+          <Parameter Name="telefone_aux" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="data_nascimento" Type="date" Mode="In" />
+          <Parameter Name="cep" Type="int" Mode="In" />
+          <Parameter Name="rua" Type="varchar" Mode="In" />
+          <Parameter Name="numero" Type="int" Mode="In" />
+          <Parameter Name="complemento" Type="varchar" Mode="In" />
+          <Parameter Name="bairro" Type="varchar" Mode="In" />
+          <Parameter Name="cidade" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="varchar" Mode="In" />
+          <Parameter Name="idout" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_insertupdate_evento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nome" Type="varchar" Mode="In" />
+          <Parameter Name="data" Type="datetime" Mode="In" />
+          <Parameter Name="descricao" Type="varchar" Mode="In" />
+          <Parameter Name="idout" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_viewAllContato" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_viewAllEvento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_viewContatoById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_viewEventoById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="IOBBDModelStoreContainer">
+          <EntitySet Name="CONTATO" EntityType="Self.CONTATO" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CONTATO].[ID] AS [ID], 
+    [CONTATO].[NOME] AS [NOME], 
+    [CONTATO].[TELEFONE] AS [TELEFONE], 
+    [CONTATO].[TELEFONE_AUX] AS [TELEFONE_AUX], 
+    [CONTATO].[EMAIL] AS [EMAIL], 
+    [CONTATO].[DATA_NASCIMENTO] AS [DATA_NASCIMENTO], 
+    [CONTATO].[CEP] AS [CEP], 
+    [CONTATO].[RUA] AS [RUA], 
+    [CONTATO].[NUMERO] AS [NUMERO], 
+    [CONTATO].[COMPLEMENTO] AS [COMPLEMENTO], 
+    [CONTATO].[BAIRRO] AS [BAIRRO], 
+    [CONTATO].[CIDADE] AS [CIDADE], 
+    [CONTATO].[ESTADO] AS [ESTADO]
+    FROM [dbo].[CONTATO] AS [CONTATO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EVENTO" EntityType="Self.EVENTO" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EVENTO].[ID] AS [ID], 
+    [EVENTO].[NOME] AS [NOME], 
+    [EVENTO].[DATA] AS [DATA], 
+    [EVENTO].[DESCRICAO] AS [DESCRICAO]
+    FROM [dbo].[EVENTO] AS [EVENTO]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IOBBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CONTATO">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="NOME" />
+            <PropertyRef Name="TELEFONE" />
+            <PropertyRef Name="TELEFONE_AUX" />
+            <PropertyRef Name="EMAIL" />
+            <PropertyRef Name="DATA_NASCIMENTO" />
+            <PropertyRef Name="CEP" />
+            <PropertyRef Name="RUA" />
+            <PropertyRef Name="NUMERO" />
+            <PropertyRef Name="BAIRRO" />
+            <PropertyRef Name="CIDADE" />
+            <PropertyRef Name="ESTADO" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONE_AUX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATA_NASCIMENTO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CEP" Type="Int32" Nullable="false" />
+          <Property Name="RUA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUMERO" Type="Int32" Nullable="false" />
+          <Property Name="COMPLEMENTO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="BAIRRO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CIDADE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EVENTO">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="NOME" />
+            <PropertyRef Name="DATA" />
+            <PropertyRef Name="DESCRICAO" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DESCRICAO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="IOBBDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CONTATO" EntityType="Self.CONTATO" />
+          <EntitySet Name="EVENTO" EntityType="Self.EVENTO" />
+          <FunctionImport Name="sp_viewAllContato" ReturnType="Collection(IOBBDModel.sp_viewAllContato_Result)" />
+          <FunctionImport Name="sp_insertupdate_contato">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nome" Mode="In" Type="String" />
+            <Parameter Name="telefone" Mode="In" Type="String" />
+            <Parameter Name="telefone_aux" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="data_nascimento" Mode="In" Type="DateTime" />
+            <Parameter Name="cep" Mode="In" Type="Int32" />
+            <Parameter Name="rua" Mode="In" Type="String" />
+            <Parameter Name="numero" Mode="In" Type="Int32" />
+            <Parameter Name="complemento" Mode="In" Type="String" />
+            <Parameter Name="bairro" Mode="In" Type="String" />
+            <Parameter Name="cidade" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+            <Parameter Name="idout" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_viewContatoById" ReturnType="Collection(IOBBDModel.sp_viewContatoById_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_deleteContato">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_deleteEvento">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_insertupdate_evento">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nome" Mode="In" Type="String" />
+            <Parameter Name="data" Mode="In" Type="DateTime" />
+            <Parameter Name="descricao" Mode="In" Type="String" />
+            <Parameter Name="idout" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_viewAllEvento" ReturnType="Collection(IOBBDModel.sp_viewAllEvento_Result)" />
+          <FunctionImport Name="sp_viewEventoById" ReturnType="Collection(IOBBDModel.sp_viewEventoById_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_viewAllContato_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="NOME" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="TELEFONE" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TELEFONE_AUX" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="DATA_NASCIMENTO" Nullable="false" />
+          <Property Type="Int32" Name="CEP" Nullable="false" />
+          <Property Type="String" Name="RUA" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="NUMERO" Nullable="false" />
+          <Property Type="String" Name="COMPLEMENTO" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="BAIRRO" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CIDADE" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ESTADO" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_viewContatoById_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="NOME" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="TELEFONE" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TELEFONE_AUX" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="DATA_NASCIMENTO" Nullable="false" />
+          <Property Type="Int32" Name="CEP" Nullable="false" />
+          <Property Type="String" Name="RUA" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="NUMERO" Nullable="false" />
+          <Property Type="String" Name="COMPLEMENTO" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="BAIRRO" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CIDADE" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ESTADO" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_viewAllEvento_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="NOME" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="DATA" Nullable="false" Precision="23" />
+          <Property Type="String" Name="DESCRICAO" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_viewEventoById_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="NOME" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="DATA" Nullable="false" Precision="23" />
+          <Property Type="String" Name="DESCRICAO" Nullable="false" MaxLength="200" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IOBBDModelStoreContainer" CdmEntityContainer="IOBBDEntities">
+          <EntitySetMapping Name="CONTATO">
+            <EntityTypeMapping TypeName="IOBBDModel.CONTATO">
+              <MappingFragment StoreEntitySet="CONTATO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="TELEFONE" ColumnName="TELEFONE" />
+                <ScalarProperty Name="TELEFONE_AUX" ColumnName="TELEFONE_AUX" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="DATA_NASCIMENTO" ColumnName="DATA_NASCIMENTO" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="RUA" ColumnName="RUA" />
+                <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+                <ScalarProperty Name="COMPLEMENTO" ColumnName="COMPLEMENTO" />
+                <ScalarProperty Name="BAIRRO" ColumnName="BAIRRO" />
+                <ScalarProperty Name="CIDADE" ColumnName="CIDADE" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EVENTO">
+            <EntityTypeMapping TypeName="IOBBDModel.EVENTO">
+              <MappingFragment StoreEntitySet="EVENTO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="DATA" ColumnName="DATA" />
+                <ScalarProperty Name="DESCRICAO" ColumnName="DESCRICAO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_viewAllContato" FunctionName="IOBBDModel.Store.sp_viewAllContato">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IOBBDModel.sp_viewAllContato_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="TELEFONE" ColumnName="TELEFONE" />
+                <ScalarProperty Name="TELEFONE_AUX" ColumnName="TELEFONE_AUX" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="DATA_NASCIMENTO" ColumnName="DATA_NASCIMENTO" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="RUA" ColumnName="RUA" />
+                <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+                <ScalarProperty Name="COMPLEMENTO" ColumnName="COMPLEMENTO" />
+                <ScalarProperty Name="BAIRRO" ColumnName="BAIRRO" />
+                <ScalarProperty Name="CIDADE" ColumnName="CIDADE" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_insertupdate_contato" FunctionName="IOBBDModel.Store.sp_insertupdate_contato" />
+          <FunctionImportMapping FunctionImportName="sp_viewContatoById" FunctionName="IOBBDModel.Store.sp_viewContatoById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IOBBDModel.sp_viewContatoById_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="TELEFONE" ColumnName="TELEFONE" />
+                <ScalarProperty Name="TELEFONE_AUX" ColumnName="TELEFONE_AUX" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="DATA_NASCIMENTO" ColumnName="DATA_NASCIMENTO" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="RUA" ColumnName="RUA" />
+                <ScalarProperty Name="NUMERO" ColumnName="NUMERO" />
+                <ScalarProperty Name="COMPLEMENTO" ColumnName="COMPLEMENTO" />
+                <ScalarProperty Name="BAIRRO" ColumnName="BAIRRO" />
+                <ScalarProperty Name="CIDADE" ColumnName="CIDADE" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_deleteContato" FunctionName="IOBBDModel.Store.sp_deleteContato" />
+          <FunctionImportMapping FunctionImportName="sp_deleteEvento" FunctionName="IOBBDModel.Store.sp_deleteEvento" />
+          <FunctionImportMapping FunctionImportName="sp_insertupdate_evento" FunctionName="IOBBDModel.Store.sp_insertupdate_evento" />
+          <FunctionImportMapping FunctionImportName="sp_viewAllEvento" FunctionName="IOBBDModel.Store.sp_viewAllEvento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IOBBDModel.sp_viewAllEvento_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="DATA" ColumnName="DATA" />
+                <ScalarProperty Name="DESCRICAO" ColumnName="DESCRICAO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_viewEventoById" FunctionName="IOBBDModel.Store.sp_viewEventoById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IOBBDModel.sp_viewEventoById_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="DATA" ColumnName="DATA" />
+                <ScalarProperty Name="DESCRICAO" ColumnName="DESCRICAO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
